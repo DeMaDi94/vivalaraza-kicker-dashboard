@@ -1,0 +1,1 @@
+# inertia-react-admin-panel
