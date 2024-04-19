@@ -27,20 +27,13 @@ export default function Dashboard({
 }: PageProps<{ games: Array<{ name: string; id: number }> }>) {
     console.log(games);
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Dashboard
-                </h2>
-            }
-        >
+        <AuthenticatedLayout user={auth.user}>
             <Head title="Dashboard" />
-            <div className="mx-10 my-5 flex justify-end">
+            <div className="mb-5 flex justify-end">
                 <Button>Spiel starten</Button>
             </div>
 
-            <Card className="m-10 p-5">
+            <Card className="p-5">
                 <GamesTable games={games} />
             </Card>
         </AuthenticatedLayout>
