@@ -19,8 +19,13 @@ import {
     SelectValue,
 } from "@/Components/ui/select";
 import { Button } from "@/Components/ui/button";
+import { GamesTable } from "@/Components/Table";
 
-export default function Dashboard({ auth }: PageProps) {
+export default function Dashboard({
+    auth,
+    games,
+}: PageProps<{ games: Array<{ name: string; id: number }> }>) {
+    console.log(games);
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -31,65 +36,13 @@ export default function Dashboard({ auth }: PageProps) {
             }
         >
             <Head title="Dashboard" />
-
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
-                            You're logged in!
-                        </div>
-                    </div>
-                    <Card className="w-[350px]">
-                        <CardHeader>
-                            <CardTitle>Create project</CardTitle>
-                            <CardDescription>
-                                Deploy your new project in one-click.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <form>
-                                <div className="grid w-full items-center gap-4">
-                                    <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="name">Name</Label>
-                                        <Input
-                                            id="name"
-                                            placeholder="Name of your project"
-                                        />
-                                    </div>
-                                    <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="framework">
-                                            Framework
-                                        </Label>
-                                        <Select>
-                                            <SelectTrigger id="framework">
-                                                <SelectValue placeholder="Select" />
-                                            </SelectTrigger>
-                                            <SelectContent position="popper">
-                                                <SelectItem value="next">
-                                                    Next.js
-                                                </SelectItem>
-                                                <SelectItem value="sveltekit">
-                                                    SvelteKit
-                                                </SelectItem>
-                                                <SelectItem value="astro">
-                                                    Astro
-                                                </SelectItem>
-                                                <SelectItem value="nuxt">
-                                                    Nuxt.js
-                                                </SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                </div>
-                            </form>
-                        </CardContent>
-                        <CardFooter className="flex justify-between">
-                            <Button variant="outline">Cancel</Button>
-                            <Button>Deploy</Button>
-                        </CardFooter>
-                    </Card>
-                </div>
+            <div className="mx-10 my-5 flex justify-end">
+                <Button>Spiel starten</Button>
             </div>
+
+            <Card className="m-10 p-5">
+                <GamesTable games={games} />
+            </Card>
         </AuthenticatedLayout>
     );
 }

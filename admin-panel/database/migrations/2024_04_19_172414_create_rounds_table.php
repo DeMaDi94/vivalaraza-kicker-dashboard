@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('chirps', function (Blueprint $table) {
+        Schema::create('rounds', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('message');
+            $table->integer('round_number');
+            $table->unsignedBigInteger('game_id');
+            $table->foreign('game_id')->references('id')->on('games');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('chirps');
+        Schema::dropIfExists('rounds');
     }
 };
