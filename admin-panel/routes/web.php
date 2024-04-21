@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\ChirpController;
-use App\Http\Controllers\GameController;
+use App\Http\Components\Game\GameController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Game;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,7 +27,7 @@ Route::get('/', function () {
 });
 
 Route::resource('games', GameController::class)
-    ->only(['index', 'store', 'create'])
+    ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', [GameController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -40,4 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

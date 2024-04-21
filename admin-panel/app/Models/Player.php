@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Game extends Model
+class Player extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,8 @@ class Game extends Model
         'name',
     ];
 
-    public function players(): HasMany
+    public function players(): BelongsTo
     {
-        return $this->hasMany(Player::class);
+        return $this->belongsTo(Game::class);
     }
 }

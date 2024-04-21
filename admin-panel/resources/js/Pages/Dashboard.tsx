@@ -9,28 +9,19 @@ import {
     CardHeader,
     CardTitle,
 } from "@/Components/ui/card";
-import { Label } from "@/Components/ui/label";
-import { Input } from "@/Components/ui/input";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/Components/ui/select";
-import { Button } from "@/Components/ui/button";
-import { GamesTable } from "@/Components/Table";
+import { GamesTable } from "@/Components/Game/GamesTable";
+import { GameCreateModal } from "@/Components/Game/GameCreateModal";
+import { Game } from "@/types/Game";
 
 export default function Dashboard({
     auth,
     games,
-}: PageProps<{ games: Array<{ name: string; id: number }> }>) {
-    console.log(games);
+}: PageProps<{ games: Array<Game> }>) {
     return (
         <AuthenticatedLayout user={auth.user}>
             <Head title="Dashboard" />
             <div className="mb-5 flex justify-end">
-                <Button>Spiel starten</Button>
+                <GameCreateModal />
             </div>
 
             <Card className="p-5">
