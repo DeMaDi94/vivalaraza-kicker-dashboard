@@ -19,7 +19,7 @@ import { router, useForm } from "@inertiajs/react";
 export function GameCreateModal() {
     const [open, setOpen] = useState(false);
 
-    const { data, setData, post } = useForm({
+    const { data, setData, post, reset } = useForm({
         name: "",
         player_one: "",
         player_two: "",
@@ -31,6 +31,7 @@ export function GameCreateModal() {
         e.preventDefault();
         post("/games");
         setOpen(false);
+        reset();
     }
 
     return (
