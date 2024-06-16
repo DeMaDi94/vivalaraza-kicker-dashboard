@@ -24,6 +24,5 @@ class GameCreatedListener
         $this->player_create_service->store($event->game, $event->players['player_two']);
         $this->player_create_service->store($event->game, $event->players['player_three']);
         $this->player_create_service->store($event->game, $event->players['player_four']);
-
     }
 }

@@ -16,10 +16,12 @@ use Inertia\Response;
 class GameController extends Controller
 {
 
-    public function index(): Response
+    public function index(GameListService $list_service): Response
     {
+        $games = $list_service->list();
+
         return Inertia::render('Dashboard', [
-            'games' => Game::with('players')->get(),
+            'games' => $games,
         ]);
     }
 
@@ -28,6 +30,13 @@ class GameController extends Controller
         $create_service->store($request);
 
         return to_route('dashboard');
+    }
+
+    public function Show(GameShowService $show_service, int $game_id)
+    {
+        $data = $show_service->show($game_id);
+
+        return Inertia::render('Game', $data);
     }
 
 }

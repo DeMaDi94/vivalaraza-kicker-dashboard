@@ -5,17 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Player extends Model
+class Round extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'round_number',
+        'game_id',
     ];
 
-    public function games(): BelongsTo
+    public function playerPoints(): HasMany
     {
-        return $this->belongsTo(Game::class);
+        return $this->hasMany(PlayerPoint::class)->with('player');
     }
+
 }

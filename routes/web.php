@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Components\Game\GameController;
+use App\Http\Components\Round\RoundController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::resource('games', GameController::class)
     ->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', [GameController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/games/{gameId}', [GameController::class, 'show'])->middleware(['auth', 'verified'])->name('game');
+Route::post('/games/{gameId}/rounds', [RoundController::class, 'store'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

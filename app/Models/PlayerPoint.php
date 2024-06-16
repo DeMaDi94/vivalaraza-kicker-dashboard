@@ -6,16 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Player extends Model
+class PlayerPoint extends Model
 {
     use HasFactory;
 
+    protected $table = 'player_points';
     protected $fillable = [
-        'name',
+        'points',
+        'player_id',
+        'round_id'
     ];
 
-    public function games(): BelongsTo
+    public function player(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Player::class);
     }
+
 }
