@@ -11,19 +11,25 @@ import { GameTable } from "@/Components/Game/GameTable";
 import { Button } from "@/Components/ui/button";
 import ArrowLeft from "@/Components/ui/icons/ArrowLeft";
 import { RoundCreateModal } from "@/Components/Round/RoundCreateModal";
+import { GameStandings } from "@/Components/Game/GameStandings";
+
+type TPlayerPoint = { points: number; id: number; player_id: number };
+export type TRoundsWithPlayerPoints = Array<{
+  id: number;
+  round_number: number;
+  player_points: Array<TPlayerPoint>;
+}>;
+
+export type TGameWithScore = Game & {
+  rounds_with_player_points: TRoundsWithPlayerPoints;
+};
 
 export default function Component({
   auth,
   game,
   players,
 }: PageProps<{
-  game: Game & {
-    rounds_with_player_points: Array<{
-      id: number;
-      round_number: number;
-      player_points: Array<{ points: number; id: number; player_id: number }>;
-    }>;
-  };
+  game: TGameWithScore;
   players: Array<Player>;
 }>) {
   return (
@@ -40,9 +46,18 @@ export default function Component({
 
         <RoundCreateModal gameId={game.id} players={players} />
       </div>
-      <Card className="p-5">
-        <GameTable players={players} game={game} />
-      </Card>
+      <div className="grid grid-cols-5 gap-4">
+        <div className="col-span-4">
+          <Card className="p-5">
+            <GameTable players={players} game={game} />
+          </Card>
+        </div>
+        <div>
+          <Card className="p-5">
+            <GameStandings players={players} game={game} />
+          </Card>
+        </div>
+      </div>
     </AuthenticatedLayout>
   );
 }
