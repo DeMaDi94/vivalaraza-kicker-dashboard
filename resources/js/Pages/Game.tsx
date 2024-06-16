@@ -36,6 +36,8 @@ export default function Component({
             Dashboard
           </Button>
         </Link>
+        <h2 className="font-bold text-xl">{game.name}</h2>
+
         <RoundCreateModal gameId={game.id} players={players} />
       </div>
       <Card className="p-5">
