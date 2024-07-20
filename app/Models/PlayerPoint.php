@@ -14,7 +14,7 @@ class PlayerPoint extends Model
     protected $fillable = [
         'points',
         'player_id',
-        'round_id'
+        'season_id'
     ];
 
     public function player(): BelongsTo

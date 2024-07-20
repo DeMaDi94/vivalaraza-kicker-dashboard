@@ -3,25 +3,19 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { PageProps } from "@/types";
-import { Card } from "@/Components/ui/card";
-import { GamesTable } from "@/Components/Game/GamesTable";
-import { GameCreateModal } from "@/Components/Game/GameCreateModal";
-import { Game } from "@/types/game";
+import { Season } from "@/types/season";
+import SeasonList from "@/Season/SeasonList";
 
 export default function Dashboard({
   auth,
-  games,
-}: PageProps<{ games: Array<Game> }>) {
+  seasons,
+}: PageProps<{ seasons: Array<Season> }>) {
+  console.log(seasons);
   return (
     <AuthenticatedLayout user={auth.user}>
       <Head title="Dashboard" />
-      <div className="mb-5 flex justify-end">
-        <GameCreateModal />
-      </div>
 
-      <Card className="p-5">
-        <GamesTable games={games} />
-      </Card>
+      <SeasonList seasons={seasons} />
     </AuthenticatedLayout>
   );
 }

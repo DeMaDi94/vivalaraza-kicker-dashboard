@@ -14,8 +14,8 @@ class Player extends Model
         'name',
     ];
 
-    public function games(): BelongsTo
+    public function seasons(): BelongsTo
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Season::class);
     }
 }

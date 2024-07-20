@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,10 +13,9 @@ return new class extends Migration
         Schema::create('player_points', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('points');
-            $table->unsignedBigInteger('player_id');
-            $table->unsignedBigInteger('round_id');
-            $table->foreign('player_id')->references('id')->on('players');
-            $table->foreign('round_id')->references('id')->on('rounds');
+            $table->unsignedDecimal('cash', 8, 1);
+            $table->foreignId('player_id');
+            $table->foreignId('season_id');
             $table->timestamps();
         });
     }

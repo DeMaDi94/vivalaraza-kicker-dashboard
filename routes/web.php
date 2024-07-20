@@ -2,6 +2,7 @@
 
 use App\Http\Components\Game\GameController;
 use App\Http\Components\Round\RoundController;
+use App\Http\Components\Season\Controllers\SeasonManagementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -19,16 +20,11 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return redirect('login');
+    return 'test';
 });
 
-Route::resource('games', GameController::class)
-    ->only(['index', 'store'])
-    ->middleware(['auth', 'verified']);
-
-Route::get('/dashboard', [GameController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/games/{gameId}', [GameController::class, 'show'])->middleware(['auth', 'verified'])->name('game');
-Route::post('/games/{gameId}/rounds', [RoundController::class, 'store'])->middleware(['auth', 'verified']);
+Route::get('/dashboard', [SeasonManagementController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('/seasons', [SeasonManagementController::class, 'store'])->middleware(['auth', 'verified'])->name('season.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

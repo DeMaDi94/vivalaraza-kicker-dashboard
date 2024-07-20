@@ -10,11 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('players', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('season_id');
-            $table->timestamps();
+        Schema::table('seasons', function (Blueprint $table) {
+            $table->year('year')->after('id');
+            $table->dropColumn('date');
         });
     }
 
@@ -23,6 +21,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('players');
+        Schema::table('seasons', function (Blueprint $table) {
+            $table->dropColum('year');
+            $table->date('date');
+        });
     }
 };
