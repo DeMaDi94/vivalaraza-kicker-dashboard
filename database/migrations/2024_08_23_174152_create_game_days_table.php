@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('game_day', function (Blueprint $table) {
+        Schema::create('game_days', function (Blueprint $table) {
             $table->id();
             $table->integer('game_day_number');
             $table->foreignId('season_id');

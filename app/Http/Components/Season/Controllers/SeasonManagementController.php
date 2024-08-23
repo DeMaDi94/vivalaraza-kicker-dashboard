@@ -27,6 +27,7 @@ class SeasonManagementController extends Controller
     {
         $season = Season::find($seasonId);
         $players = $season->players()->get();
-        return Inertia::render('Season/Show', ['season' => $season, 'players' => $players]);
+        $gameDays = $season->gameDays()->get();
+        return Inertia::render('Season/Show', ['season' => $season, 'players' => $players, 'gameDays' => $gameDays]);
     }
 }

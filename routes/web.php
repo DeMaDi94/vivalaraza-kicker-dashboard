@@ -2,6 +2,7 @@
 
 use App\Http\Components\Game\GameController;
 use App\Http\Components\Round\RoundController;
+use App\Http\Components\Season\Controllers\SeasonGameDayManagementController;
 use App\Http\Components\Season\Controllers\SeasonManagementController;
 use App\Http\Components\Season\Controllers\SeasonPlayerManagementController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +29,7 @@ Route::get('/dashboard', [SeasonManagementController::class, 'index'])->middlewa
 Route::post('/seasons', [SeasonManagementController::class, 'store'])->middleware(['auth', 'verified'])->name('season.create');
 Route::get('/seasons/{seasonId}', [SeasonManagementController::class, 'show'])->middleware(['auth', 'verified'])->name('season.show');
 Route::post('/seasons/{seasonId}/player', [SeasonPlayerManagementController::class, 'store'])->middleware(['auth', 'verified'])->name('season.player.create');
+Route::post('/seasons/{seasonId}/game-day', [SeasonGameDayManagementController::class, 'store'])->middleware(['auth', 'verified'])->name('season.game-day.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -19,4 +19,9 @@ class Season extends Model
         return $this->hasMany(Player::class);
     }
 
+    public function gameDays(): HasMany
+    {
+        return $this->hasMany(GameDay::class);
+    }
+
 }
