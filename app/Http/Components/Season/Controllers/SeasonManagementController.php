@@ -22,4 +22,11 @@ class SeasonManagementController extends Controller
         Season::create(['year' => $request['year']]);
         to_route('dashboard');
     }
+
+    public function show(int $seasonId)
+    {
+        $season = Season::find($seasonId);
+        $players = $season->players()->get();
+        return Inertia::render('Season/Show', ['season' => $season, 'players' => $players]);
+    }
 }

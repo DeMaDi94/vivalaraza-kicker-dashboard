@@ -13,6 +13,7 @@ import {
 } from "@/Components/ui/table";
 import { Season } from "@/types/season";
 import { SeasonCreateModal } from "./SeasonCreateModal";
+import { router } from "@inertiajs/react";
 
 const SeasonList = (props: { seasons: Array<Season> }) => {
   return (
@@ -34,6 +35,7 @@ const SeasonList = (props: { seasons: Array<Season> }) => {
               <TableRow
                 key={season.id}
                 className="cursor-pointe flex justify-between"
+                onClick={() => router.get(`/seasons/${season.id}`)}
               >
                 <TableCell>{season.year}</TableCell>
                 <TableCell className="w-12">

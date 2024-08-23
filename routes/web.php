@@ -3,6 +3,7 @@
 use App\Http\Components\Game\GameController;
 use App\Http\Components\Round\RoundController;
 use App\Http\Components\Season\Controllers\SeasonManagementController;
+use App\Http\Components\Season\Controllers\SeasonPlayerManagementController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [SeasonManagementController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/seasons', [SeasonManagementController::class, 'store'])->middleware(['auth', 'verified'])->name('season.create');
+Route::get('/seasons/{seasonId}', [SeasonManagementController::class, 'show'])->middleware(['auth', 'verified'])->name('season.show');
+Route::post('/seasons/{seasonId}/player', [SeasonPlayerManagementController::class, 'store'])->middleware(['auth', 'verified'])->name('season.player.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
